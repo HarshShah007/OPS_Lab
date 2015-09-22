@@ -20,7 +20,8 @@ public class RoundRobin {
 		int timer = 0;
 		while (true) {
 			for (Process process : database) {
-				if (process.arrivalTime == timer) {
+				if (process.arrivalTime <= timer && process.isTaken == false) {
+					process.isTaken = true;
 					queue.add(process);
 				}
 			}
