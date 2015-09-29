@@ -49,6 +49,33 @@ public class FCFS {
 			System.out.println(process);
 		}
 
+		printGanttChart(ganttChart);
+	}
+
+	public static void printGanttChart(ArrayList<Process> ganttChart) {
+
+		/*Gantt Chart starts here*/
+		System.out.println("\nGANTT CHART\n");
+		int counter = 1;
+		Process prev = ganttChart.get(0);
+		while (counter < ganttChart.size()) {
+			Process current = ganttChart.get(counter);
+			if (current != prev) {
+				if (prev != null) {
+					System.out.println(prev.name + " " + counter);
+				} else {
+					System.out.println("Idle " + counter);
+				}
+			}
+			counter += 1;
+			prev = current;							
+		}
+		if (prev != null) {
+			System.out.println(prev.name + " " + counter);
+		} else {
+			System.out.println("Idle " + counter);
+		}
+
 	}
 
 	public static boolean isAllCompleted() {

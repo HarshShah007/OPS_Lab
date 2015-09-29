@@ -16,7 +16,7 @@ public class RoundRobin {
 		/*Algorithm starts here*/
 		ArrayList< Process > ganttChart = new ArrayList< Process >();
 		Queue< Process > queue = new LinkedList< Process >();
-		
+
 		int timer = 0;
 		int counter = 0;
 		while (true) {
@@ -45,7 +45,7 @@ public class RoundRobin {
 					queue.remove();
 				}
 			}
-			
+
 			if (isAllCompleted()) {
 				break;
 			}
@@ -61,6 +61,33 @@ public class RoundRobin {
 			System.out.println(process);
 		}
 
+		printGanttChart(ganttChart);
+
+	}
+
+	public static void printGanttChart(ArrayList<Process> ganttChart) {
+
+		/*Gantt Chart starts here*/
+		System.out.println("\n GANTT CHART \n");
+		int counter = 1;
+		Process prev = ganttChart.get(0);
+		while (counter < ganttChart.size()) {
+			Process current = ganttChart.get(counter);
+			if (current != prev) {
+				if (prev != null) {
+					System.out.println(prev.name + " " + counter);
+				} else {
+					System.out.println("Idle " + counter);
+				}
+			}
+			counter += 1;
+			prev = current;
+		}
+		if (prev != null) {
+			System.out.println(prev.name + " " + counter);
+		} else {
+			System.out.println("Idle " + counter);
+		}
 	}
 
 	public static boolean isAllCompleted() {
