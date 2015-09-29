@@ -64,30 +64,44 @@ public class RoundRobin {
 		printGanttChart(ganttChart);
 
 	}
-
 	public static void printGanttChart(ArrayList<Process> ganttChart) {
 
 		/*Gantt Chart starts here*/
-		System.out.println("\n GANTT CHART \n");
+		System.out.println("\nGANTT CHART\n");
 		int counter = 1;
 		Process prev = ganttChart.get(0);
+		String out1 = "";
+		String out2 = "";
 		while (counter < ganttChart.size()) {
 			Process current = ganttChart.get(counter);
+			out1 += "-";
+			out2 += " ";
 			if (current != prev) {
 				if (prev != null) {
-					System.out.println(prev.name + " " + counter);
+					out1 += "       ";
+					out2 += "|";
+					out2 += (prev.name + " " + counter);
+					out2 += "|";
 				} else {
-					System.out.println("Idle " + counter);
+					out1 += "       ";
+					out2 += "|";
+					out2 += ("Idle " + counter);
+					out2 += "|";
 				}
 			}
 			counter += 1;
-			prev = current;
+			prev = current;							
 		}
 		if (prev != null) {
-			System.out.println(prev.name + " " + counter);
+			out2 += "|";
+			out2 += (prev.name + " " + counter);
 		} else {
-			System.out.println("Idle " + counter);
+			out2 += "|";
+			out2 += ("Idle " + counter);
 		}
+		System.out.println(out1);
+		System.out.println(out2);
+		System.out.println(out1);
 	}
 
 	public static boolean isAllCompleted() {
