@@ -18,29 +18,29 @@ public class RoundRobin {
 		Queue< Process > queue = new LinkedList< Process >();
 		
 		int timer = 0;
+		int counter = 0;
 		while (true) {
 			for (Process process : database) {
-				if (process.arrivalTime <= timer && process.isTaken == false) {
-					process.isTaken = true;
+				if (process.arrivalTime == timer) {
 					queue.add(process);
 				}
 			}
 			if (queue.peek() == null) {
 				ganttChart.add(null);
 				timer += 1;
+				counter = 0;
 			} else {
 				ganttChart.add(queue.peek());
-				if (queue.peek().burstTime < timeQuantum) {
-					timer += queue.peek().burstTime;
-					queue.peek().burstTime = 0;
-				} else {					
-					queue.peek().burstTime -= timeQuantum;
-					timer += timeQuantum;
-				}
+				queue.peek().burstTime -= 1;
+				timer += 1;
+				counter += 1;
+
 				if (queue.peek().burstTime == 0) {
-					queue.peek().completionTime = timer + 1;
+					queue.peek().completionTime = timer;
 					queue.remove();
-				} else {
+					counter = 0;
+				} else if (counter == timeQuantum) {
+					counter = 0;
 					queue.add(queue.peek());
 					queue.remove();
 				}
@@ -56,7 +56,7 @@ public class RoundRobin {
 			process.waitingTime = process.turnaroundTime - process.originalBurstTime;
 		}
 
-		System.out.println("Name AT BT Priority CT TAT WT");
+		System.out.println("Name\tAT\tBT\tPriority CT\tTAT\tWT");
 		for (Process process : database) {
 			System.out.println(process);
 		}

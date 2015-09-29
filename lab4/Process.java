@@ -12,9 +12,10 @@ public class Process {
 
 	@Override
 	public String toString() {
-		String output = name + " " + arrivalTime + " " + originalBurstTime + " " + priority + " "
-			+ completionTime + " " + turnaroundTime + " " + waitingTime;
+		String output = name + "\t" + arrivalTime + "\t" + originalBurstTime + "\t" + priority + "\t"
+			+ completionTime + "\t" + turnaroundTime + "\t" + waitingTime;
 		return output;
 	}
 }
+
 

@@ -15,7 +15,7 @@ public class FCFS {
 		/*Algorithm starts here*/
 		ArrayList< Process > ganttChart = new ArrayList< Process >();
 		Queue< Process > queue = new LinkedList< Process >();
-		
+
 		int timer = 0;
 		while (true) {
 			for (Process process : database) {
@@ -44,7 +44,7 @@ public class FCFS {
 			process.waitingTime = process.turnaroundTime - process.originalBurstTime;
 		}
 
-		System.out.println("Name AT BT Priority CT TAT WT");
+		System.out.println("Name\tAT\tBT\tPriority CT\tTAT\tWT");
 		for (Process process : database) {
 			System.out.println(process);
 		}
@@ -95,3 +95,4 @@ public class FCFS {
 		return input;
 	}
 }
+
