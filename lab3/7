@@ -1,0 +1,6 @@
+gcc mv.c -o move
+cd
+vi .bashrc
+PATH="~/OPS_Lab/lab3:${PATH}"
+export PATH
+
