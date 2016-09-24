@@ -8,7 +8,7 @@ public class RoundRobin {
 
 	public static void main(String[] args) {
 
-		System.out.println("FCFS Scheduling Alogrithm");
+		System.out.println("Round Robin Scheduling Alogrithm");
 		String fileName = getInput("Enter file name: ");
 		int timeQuantum = Integer.parseInt(getInput("Enter time quantum: "));
 		getFromFile(fileName);
